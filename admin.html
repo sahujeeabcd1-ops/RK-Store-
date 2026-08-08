@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>RK Store | Owner Panel</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7f4;
+      color: #222;
+    }
+
+    :root {
+      --green: #2E7D32;
+      --dark: #1B5E20;
+      --orange: #FF6F00;
+      --red: #d32f2f;
+      --white: #fff;
+      --border: #ddd;
+    }
+
+    /* LOGIN */
+
+    .login-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background:
+        linear-gradient(135deg, #e8f5e9, #fff3e0);
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 400px;
+      background: white;
+      padding: 35px;
+      border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(0,0,0,.12);
+    }
+
+    .login-logo {
+      text-align: center;
+      font-size: 30px;
+      font-weight: 900;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+
+    .login-logo span {
+      color: var(--orange);
+    }
+
+    .login-subtitle {
+      text-align: center;
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    /* COMMON */
+
+    .hidden {
+      display: none !important;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      outline: none;
+      font-size: 15px;
+      margin-bottom: 16px;
+      font-family: inherit;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--green);
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .green-btn {
+      background: var(--green);
+      color: white;
+    }
+
+    .green-btn:hover {
+      background: var(--dark);
+    }
+
+    .orange-btn {
+      background: var(--orange);
+      color: white;
+    }
+
+    .red-btn {
+      background: var(--red);
+      color: white;
+    }
+
+    /* HEADER */
+
+    .admin-header {
+      background: white;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: auto;
+      min-height: 70px;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .admin-logo {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--green);
+    }
+
+    .admin-logo span {
+      color: var(--orange);
+    }
+
+    .logout-btn {
+      border: none;
+      background: #ffebee;
+      color: var(--red);
+      padding: 9px 13px;
+      border-radius: 7px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* MAIN */
+
+    .admin-container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 35px 20px 70px;
+    }
+
+    .page-title {
+      margin-bottom: 25px;
+    }
+
+    .page-title h1 {
+      color: var(--green);
+      margin-bottom: 5px;
+    }
+
+    .page-title p {
+      color: #777;
+    }
+
+    .admin-card {
+      background: white;
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.05);
+    }
+
+    .admin-card h2 {
+      color: var(--green);
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    /* PRODUCTS */
+
+    .product-form {
+      background: #f7faf7;
+      border: 1px solid #e1e9e1;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .product-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .product-row {
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 15px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .product-row h3 {
+      color: #222;
+      margin-bottom: 4px;
+    }
+
+    .product-row p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .small-btn {
+      border: none;
+      padding: 8px 11px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .edit-btn {
+      background: #e8f5e9;
+      color: var(--green);
+    }
+
+    .delete-btn {
+      background: #ffebee;
+      color: var(--red);
+    }
+
+    /* MESSAGE */
+
+    .message {
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 18px;
+      font-weight: 700;
+      display: none;
+    }
+
+    .success {
+      display: block;
+      background: #e8f5e9;
+      color: var(--green);
+    }
+
+    .error {
+      display: block;
+      background: #ffebee;
+      color: var(--red);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+
+      .form-grid,
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+
+      .product-row {
+        grid-template-columns: 1fr;
+      }
+
+      .admin-container {
+        padding: 25px 15px 50px;
+      }
+
+      .admin-card {
+        padding: 18px;
+      }
+
+      .header-inner {
+        padding: 10px 15px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     LOGIN PAGE
+========================= -->
+
+<div id="loginPage" class="login-page">
+
+  <div class="login-box">
+
+    <div class="login-logo">
+      RK <span>STORE</span>
+    </div>
+
+    <div class="login-subtitle">
+      Shop Owner Admin Panel
+    </div>
+
+    <div id="loginMessage" class="message"></div>
+
+    <label>
+      Owner Password
+    </label>
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Password डालें"
+      onkeydown="if(event.key==='Enter') login()">
+
+    <button
+      class="btn green-btn"
+      style="width:100%;"
+      onclick="login()">
+
+      🔐 Login
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     ADMIN PANEL
+========================= -->
+
+<div id="adminPanel" class="hidden">
+
+
+  <!-- HEADER -->
+
+  <header class="admin-header">
+
+    <div class="header-inner">
+
+      <div class="admin-logo">
+        RK <span>STORE</span>
+      </div>
+
+      <button
+        class="logout-btn"
+        onclick="logout()">
+
+        Logout
+
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main class="admin-container">
+
+
+    <div class="page-title">
+
+      <h1>
+        🏪 Shop Owner Panel
+      </h1>
+
+      <p>
+        यहाँ से RK Store की जानकारी और products manage करें।
+      </p>
+
+    </div>
+
+
+    <!-- MESSAGE -->
+
+    <div id="saveMessage" class="message"></div>
+
+
+    <!-- =========================
+         SHOP INFORMATION
+    ========================= -->
+
+    <section class="admin-card">
+
+      <h2>
+        🏪 Shop Information
+      </h2>
+
+
+      <div class="form-grid">
+
+
+        <div>
+
+          <label>
+            Shop Name
+          </label>
+
+          <input
+            type="text"
+            id="shopName"
+            placeholder="RK Store">
+
+        </div>
+
+
+        <div>
+
+          <label>
+            WhatsApp Number
+          </label>
+
+          <input
+            type="tel"
+            id="whatsapp"
+            placeholder="9771059673">
+
+        </div>
+
+
+        <div class="full">
+
+          <label>
+            Address
+          </label>
+
+          <textarea
+            id="address"
+            placeholder="Shop address"></textarea>
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Opening Time
+          </label>
+
+          <input
+            type="text"
+            id="opening"
+            placeholder="7:00 AM">
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Closing Time
+          </label>
+
+          <input
+            type="text"
+            id="closing"
+            placeholder="7:30 PM">
+
+        </div>
+
+
+        <div class="full">
+
+          <label>
+            Delivery Information
+          </label>
+
+          <input
+            type="text"
+            id="delivery"
+            placeholder="₹5,000+ Orders पर Home Delivery Available">
+
+        </div>
+
+
+      </div>
+
+
+      <button
+        class="btn green-btn"
+        onclick="saveShopInfo()">
+
+        💾 Save Shop Information
+
+      </button>
+
+    </section>
+
+
+
+    <!-- =========================
+         PRODUCT MANAGEMENT
+    ========================= -->
+
+    <section class="admin-card">
+
+      <h2>
+        🛍️ Product Management
+      </h2>
+
+
+      <div class="product-form">
+
+        <input
+          type="hidden"
+          id="editIndex"
+          value="-1">
+
+
+        <div class="product-grid">
+
+
+          <div>
+
+            <label>
+              Product Name
+            </label>
+
+            <input
+              type="text"
+              id="productName"
+              placeholder="जैसे Basmati Rice">
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Price
+            </label>
+
+            <input
+              type="number"
+              id="productPrice"
+              placeholder="80">
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Category
+            </label>
+
+            <select id="productCategory">
+
+              <option value="rice">
+                🌾 Rice & Dal
+              </option>
+
+              <option value="atta">
+                🥣 Atta & Flour
+              </option>
+
+              <option value="oil">
+                🛢️ Oil & Ghee
+              </option>
+
+              <option value="masala">
+                🧂 Masala & Spices
+              </option>
+
+              <option value="snacks">
+                🍪 Snacks
+              </option>
+
+              <option value="beverages">
+                🥤 Beverages
+              </option>
+
+              <option value="personal">
+                🧴 Personal Care
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Unit
+            </label>
+
+            <select id="productUnit">
+
+              <option value="kg">
+                / kg
+              </option>
+
+              <option value="L">
+                / L
+              </option>
+
+              <option value="pack">
+                / Pack
+              </option>
+
+              <option value="piece">
+                / Piece
+              </option>
+
+            </select>
+
+          </div>
+
+
+        </div>
+
+
+        <button
+          class="btn orange-btn"
+          onclick="saveProduct()">
+
+          ➕ Add Product
+
+        </button>
+
+
+        <button
+          id="cancelEditBtn"
+          class="btn"
+          style="display:none;"
+          onclick="cancelEdit()">
+
+          Cancel Edit
+
+        </button>
+
+      </div>
+
+
+      <h3 style="margin-bottom:15px;">
+        Current Products
+      </h3>
+
+
+      <div
+        id="productList"
+        class="product-list">
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         SECURITY NOTE
+    ========================= -->
+
+    <section class="admin-card">
+
+      <h2>
+        🔐 Security
+      </h2>
+
+      <p style="color:#666;">
+
+        यह demo version browser में data save करता है।
+        Live website के लिए secure database और
+        authentication जोड़ना जरूरी है।
+
+      </p>
+
+    </section>
+
+
+  </main>
+
+</div>
+
+
+
+<script>
+
+
+/* =========================
+   DEFAULT PASSWORD
+========================= */
+
+/*
+   अभी demo password:
+   RK@2026
+
+   IMPORTANT:
+   यह frontend demo है।
+   Production website में password
+   HTML/JavaScript में नहीं रखना चाहिए।
+*/
+
+const ADMIN_PASSWORD = "RK@2026";
+
+
+/* =========================
+   DEFAULT SHOP DATA
+========================= */
+
+const defaultShop = {
+
+  name: "RK Store",
+
+  whatsapp: "9771059673",
+
+  address:
+    "RK Store, Paharpur Bazar, Near New Horizon Public School, Simri Bakhtiyarpur",
+
+  opening: "7:00 AM",
+
+  closing: "7:30 PM",
+
+  delivery:
+    "₹5,000+ Orders पर Home Delivery Available"
+
+};
+
+
+/* =========================
+   DEFAULT PRODUCTS
+========================= */
+
+const defaultProducts = [
+
+  {
+    name: "Basmati Rice",
+    price: 80,
+    category: "rice",
+    unit: "kg"
+  },
+
+  {
+    name: "Toor Dal",
+    price: 140,
+    category: "rice",
+    unit: "kg"
+  },
+
+  {
+    name: "Wheat Atta",
+    price: 45,
+    category: "atta",
+    unit: "kg"
+  },
+
+  {
+    name: "Mustard Oil",
+    price: 150,
+    category: "oil",
+    unit: "L"
+  },
+
+  {
+    name: "Turmeric Powder",
+    price: 35,
+    category: "masala",
+    unit: "pack"
+  },
+
+  {
+    name: "Red Chilli Powder",
+    price: 40,
+    category: "masala",
+    unit: "pack"
+  },
+
+  {
+    name: "Biscuits",
+    price: 30,
+    category: "snacks",
+    unit: "pack"
+  },
+
+  {
+    name: "Namkeen",
+    price: 50,
+    category: "snacks",
+    unit: "pack"
+  }
+
+];
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function login() {
+
+  const password =
+    document.getElementById("password").value;
+
+  const message =
+    document.getElementById("loginMessage");
+
+
+  if (password === ADMIN_PASSWORD) {
+
+    localStorage.setItem(
+      "rkAdminLoggedIn",
+      "true"
+    );
+
+    document
+      .getElementById("loginPage")
+      .classList.add("hidden");
+
+    document
+      .getElementById("adminPanel")
+      .classList.remove("hidden");
+
+    loadData();
+
+  } else {
+
+    message.textContent =
+      "❌ Password गलत है।";
+
+    message.className =
+      "message error";
+
+  }
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout() {
+
+  localStorage.removeItem(
+    "rkAdminLoggedIn"
+  );
+
+  location.reload();
+
+}
+
+
+/* =========================
+   CHECK LOGIN
+========================= */
+
+function checkLogin() {
+
+  const loggedIn =
+    localStorage.getItem(
+      "rkAdminLoggedIn"
+    );
+
+
+  if (loggedIn === "true") {
+
+    document
+      .getElementById("loginPage")
+      .classList.add("hidden");
+
+    document
+      .getElementById("adminPanel")
+      .classList.remove("hidden");
+
+    loadData();
+
+  }
+
+}
+
+
+/* =========================
+   LOAD DATA
+========================= */
+
+function loadData() {
+
+
+  let shop =
+    JSON.parse(
+      localStorage.getItem(
+        "rkShop"
+      )
+    );
+
+
+  if (!shop) {
+
+    shop = defaultShop;
+
+    localStorage.setItem(
+      "rkShop",
+      JSON.stringify(shop)
+    );
+
+  }
+
+
+  document.getElementById("shopName").value =
+    shop.name;
+
+  document.getElementById("whatsapp").value =
+    shop.whatsapp;
+
+  document.getElementById("address").value =
+    shop.address;
+
+  document.getElementById("opening").value =
+    shop.opening;
+
+  document.getElementById("closing").value =
+    shop.closing;
+
+  document.getElementById("delivery").value =
+    shop.delivery;
+
+
+  let products =
+    JSON.parse(
+      localStorage.getItem(
+        "rkProducts"
+      )
+    );
+
+
+  if (!products) {
+
+    products = defaultProducts;
+
+    localStorage.setItem(
+      "rkProducts",
+      JSON.stringify(products)
+    );
+
+  }
+
+
+  renderProducts();
+
+}
+
+
+/* =========================
+   SAVE SHOP INFO
+========================= */
+
+function saveShopInfo() {
+
+
+  const shop = {
+
+    name:
+      document.getElementById("shopName").value,
+
+    whatsapp:
+      document.getElementById("whatsapp").value,
+
+    address:
+      document.getElementById("address").value,
+
+    opening:
+      document.getElementById("opening").value,
+
+    closing:
+      document.getElementById("closing").value,
+
+    delivery:
+      document.getElementById("delivery").value
+
+  };
+
+
+  localStorage.setItem(
+    "rkShop",
+    JSON.stringify(shop)
+  );
+
+
+  showMessage(
+    "saveMessage",
+    "✅ Shop information saved successfully.",
+    "success"
+  );
+
+}
+
+
+/* =========================
+   GET PRODUCTS
+========================= */
+
+function getProducts() {
+
+  return JSON.parse(
+    localStorage.getItem(
+      "rkProducts"
+    )
+  ) || [];
+
+}
+
+
+/* =========================
+   SAVE PRODUCT
+========================= */
+
+function saveProduct() {
+
+
+  const name =
+    document
+      .getElementById("productName")
+      .value
+      .trim();
+
+
+  const price =
+    Number(
+      document
+        .getElementById("productPrice")
+        .value
+    );
+
+
+  const category =
+    document.getElementById(
+      "productCategory"
+    ).value;
+
+
+  const unit =
+    document.getElementById(
+      "productUnit"
+    ).value;
+
+
+  if (!name || !price) {
+
+    alert(
+      "Product Name और Price भरें।"
+    );
+
+    return;
+
+  }
+
+
+  let products = getProducts();
+
+
+  const editIndex =
+    Number(
+      document.getElementById(
+        "editIndex"
+      ).value
+    );
+
+
+  const product = {
+
+    name: name,
+
+    price: price,
+
+    category: category,
+
+    unit: unit
+
+  };
+
+
+  if (editIndex === -1) {
+
+    products.push(product);
+
+  } else {
+
+    products[editIndex] = product;
+
+  }
+
+
+  localStorage.setItem(
+    "rkProducts",
+    JSON.stringify(products)
+  );
+
+
+  clearProductForm();
+
+  renderProducts();
+
+
+  showMessage(
+    "saveMessage",
+    "✅ Product saved successfully.",
+    "success"
+  );
+
+}
+
+
+/* =========================
+   RENDER PRODUCTS
+========================= */
+
+function renderProducts() {
+
+
+  const list =
+    document.getElementById(
+      "productList"
+    );
+
+
+  const products =
+    getProducts();
+
+
+  if (products.length === 0) {
+
+    list.innerHTML =
+      "<p>अभी कोई product नहीं है।</p>";
+
+    return;
+
+  }
+
+
+  list.innerHTML = "";
+
+
+  products.forEach(
+    (product, index) => {
+
+
+      list.innerHTML += `
+
+        <div class="product-row">
+
+          <div>
+
+            <h3>
+              ${escapeHTML(product.name)}
+            </h3>
+
+            <p>
+              Category: ${escapeHTML(product.category)}
+              |
+              ₹${product.price} / ${escapeHTML(product.unit)}
+            </p>
+
+          </div>
+
+          <div class="product-actions">
+
+            <button
+              class="small-btn edit-btn"
+              onclick="editProduct(${index})">
+
+              ✏️ Edit
+
+            </button>
+
+            <button
+              class="small-btn delete-btn"
+              onclick="deleteProduct(${index})">
+
+              🗑️ Delete
+
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+  );
+
+}
+
+
+/* =========================
+   EDIT PRODUCT
+========================= */
+
+function editProduct(index) {
+
+
+  const products =
+    getProducts();
+
+
+  const product =
+    products[index];
+
+
+  document.getElementById(
+    "productName"
+  ).value = product.name;
+
+
+  document.getElementById(
+    "productPrice"
+  ).value = product.price;
+
+
+  document.getElementById(
+    "productCategory"
+  ).value = product.category;
+
+
+  document.getElementById(
+    "productUnit"
+  ).value = product.unit;
+
+
+  document.getElementById(
+    "editIndex"
+  ).value = index;
+
+
+  document.getElementById(
+    "cancelEditBtn"
+  ).style.display = "inline-block";
+
+
+  document
+    .querySelector(".product-form")
+    .scrollIntoView({
+      behavior: "smooth"
+    });
+
+}
+
+
+/* =========================
+   DELETE PRODUCT
+========================= */
+
+function deleteProduct(index) {
+
+
+  const products =
+    getProducts();
+
+
+  const product =
+    products[index];
+
+
+  const confirmDelete =
+    confirm(
+      "क्या आप '" +
+      product.name +
+      "' को delete करना चाहते हैं?"
+    );
+
+
+  if (!confirmDelete) {
+    return;
+  }
+
+
+  products.splice(index, 1);
+
+
+  localStorage.setItem(
+    "rkProducts",
+    JSON.stringify(products)
+  );
+
+
+  renderProducts();
+
+
+  showMessage(
+    "saveMessage",
+    "🗑️ Product deleted.",
+    "success"
+  );
+
+}
+
+
+/* =========================
+   CANCEL EDIT
+========================= */
+
+function cancelEdit() {
+
+  clearProductForm();
+
+}
+
+
+/* =========================
+   CLEAR PRODUCT FORM
+========================= */
+
+function clearProductForm() {
+
+
+  document.getElementById(
+    "productName"
+  ).value = "";
+
+
+  document.getElementById(
+    "productPrice"
+  ).value = "";
+
+
+  document.getElementById(
+    "editIndex"
+  ).value = "-1";
+
+
+  document.getElementById(
+    "cancelEditBtn"
+  ).style.display = "none";
+
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(
+  id,
+  text,
+  type
+) {
+
+
+  const element =
+    document.getElementById(id);
+
+
+ 
