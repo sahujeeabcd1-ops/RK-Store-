@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>RK Store | Grocery & Daily Essentials</title>
+  <meta name="description"
+        content="RK Store, Paharpur Bazar — Quality Grocery & Daily Essentials. ₹5,000+ orders पर Home Delivery उपलब्ध।">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #212121;
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    :root {
+      --green: #2E7D32;
+      --orange: #FF6F00;
+      --dark: #212121;
+      --cream: #F8FBF8;
+      --white: #FFFFFF;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      min-height: 72px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--orange);
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+    }
+
+    nav a {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: var(--green);
+    }
+
+    .whatsapp-btn {
+      background: var(--green);
+      color: white;
+      padding: 11px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--cream);
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-container {
+      max-width: 1200px;
+      width: 100%;
+      margin: auto;
+      padding: 60px 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #fff0e5;
+      color: var(--orange);
+      padding: 7px 14px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 5vw, 64px);
+      line-height: 1.1;
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 19px;
+      max-width: 550px;
+      margin-bottom: 25px;
+      color: #444;
+    }
+
+    .delivery {
+      margin-top: 18px;
+      font-weight: 700;
+      color: var(--orange);
+    }
+
+    .hero-image {
+      min-height: 400px;
+      border-radius: 24px;
+      background:
+        linear-gradient(rgba(0,0,0,.18), rgba(0,0,0,.18)),
+        url("images/store.jpg") center/cover no-repeat;
+      box-shadow: 0 15px 40px rgba(0,0,0,.12);
+    }
+
+    /* GENERAL */
+    section {
+      padding: 80px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      color: var(--green);
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: #666;
+    }
+
+    /* CATEGORIES */
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .category-card {
+      background: var(--cream);
+      border: 1px solid #e7eee7;
+      border-radius: 16px;
+      padding: 28px;
+      text-align: center;
+      transition: .25s;
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,.08);
+    }
+
+    .category-icon {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .category-card h3 {
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .category-card p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    /* WHY US */
+    .why {
+      background: var(--cream);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .feature {
+      background: white;
+      padding: 28px 20px;
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .feature-icon {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .feature h3 {
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+
+    .feature p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    /* PRODUCTS */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .product-card {
+      border: 1px solid #eee;
+      border-radius: 16px;
+      overflow: hidden;
+      background: white;
+    }
+
+    .product-image {
+      height: 190px;
+      background: #f2f2f2 center/cover no-repeat;
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product-info h3 {
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .product-info p {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .outline-btn {
+      border: 2px solid var(--green);
+      color: var(--green);
+      padding: 9px 15px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    /* DELIVERY */
+    .delivery-section {
+      background: var(--green);
+      color: white;
+      text-align: center;
+    }
+
+    .delivery-section h2 {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .delivery-section p {
+      max-width: 650px;
+      margin: 0 auto 22px;
+    }
+
+    .delivery-section .whatsapp-btn {
+      background: var(--orange);
+    }
+
+    /* LOCATION */
+    .location {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .location h2 {
+      color: var(--green);
+      font-size: 38px;
+      margin-bottom: 20px;
+    }
+
+    .info {
+      margin: 15px 0;
+    }
+
+    .map-box {
+      min-height: 320px;
+      background: #eef3ee;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px;
+      color: #555;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #173b19;
+      color: white;
+      padding: 50px 20px 20px;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    footer h3 {
+      margin-bottom: 15px;
+    }
+
+    footer a {
+      color: #ddd;
+      text-decoration: none;
+      display: block;
+      margin: 7px 0;
+    }
+
+    .copyright {
+      max-width: 1200px;
+      margin: 35px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.2);
+      text-align: center;
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 800px) {
+
+      nav {
+        display: none;
+      }
+
+      .nav {
+        padding: 12px 15px;
+      }
+
+      .whatsapp-btn {
+        padding: 9px 12px;
+        font-size: 14px;
+      }
+
+      .hero-container,
+      .location {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-container {
+        padding: 45px 18px;
+      }
+
+      .hero-image {
+        min-height: 280px;
+        order: -1;
+      }
+
+      section {
+        padding: 60px 18px;
+      }
+
+      .categories,
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .features {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title h2,
+      .location h2 {
+        font-size: 30px;
+      }
+
+      .delivery-section h2 {
+        font-size: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .logo {
+        font-size: 21px;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .categories,
+      .products,
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        min-height: 240px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav">
+      <a href="#home" class="logo">RK <span>STORE</span></a>
+
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="whatsapp-btn"
+         href="https://wa.me/919771059673"
+         target="_blank">
+        📲 Order Now
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="home">
+
+    <section class="hero">
+      <div class="hero-container">
+
+        <div>
+          <span class="badge">🛒 Your Local Grocery Store</span>
+
+          <h1>हर घर की ज़रूरत,<br>अब एक ही जगह!</h1>
+
+          <p>
+            Quality Grocery & Daily Essentials —
+            आपके अपने <strong>RK Store</strong> में।
+          </p>
+
+          <a class="whatsapp-btn"
+             href="https://wa.me/919771059673?text=Hello%20RK%20Store%2C%20मुझे%20grocery%20order%20करना%20है।"
+             target="_blank">
+            📲 Order on WhatsApp
+          </a>
+
+          <div class="delivery">
+            🚚 ₹5,000+ Orders पर Home Delivery Available
+          </div>
+        </div>
+
+        <div class="hero-image"></div>
+
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section id="categories">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>आपकी रोज़मर्रा की ज़रूरतें</h2>
+          <p>Everything you need, all in one place.</p>
+        </div>
+
+        <div class="categories">
+
+          <div class="category-card">
+            <div class="category-icon">🌾</div>
+            <h3>Atta, Dal & Rice</h3>
+            <p>Daily grocery essentials</p>
+          </div>
+
+          <div class="category-card">
+            <div class="category-icon">🛢️</div>
+            <h3>Oil & Ghee</h3>
+            <p>Cooking essentials</p>
+          </div>
+
+          <div class="category-card">
+            <div class="category-icon">🧂</div>
+            <h3>Masala & Spices</h3>
+            <p>Everyday spices</p>
+          </div>
+
+          <div class="category-card">
+            <div class="category-icon">🍪</div>
+            <h3>Snacks</h3>
+            <p>Biscuits & tasty snacks</p>
+          </div>
+
+          <div class="category-card">
+            <div class="category-icon">🥤</div>
+            <h3>Beverages</h3>
+            <p>Drinks & refreshments</p>
+          </div>
+
+          <div class="category-card">
+            <div class="category-icon">🧴</div>
+            <h3>Home & Personal Care</h3>
+            <p>Daily-use products</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY US -->
+    <section class="why" id="about">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>क्यों चुनें RK Store?</h2>
+          <p>Simple shopping. Local trust. Everyday essentials.</p>
+        </div>
+
+        <div class="features">
+
+          <div class="feature">
+            <div class="feature-icon">🛒</div>
+            <h3>Daily Essentials</h3>
+            <p>रोज़मर्रा की जरूरत का सामान एक ही जगह।</p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">✅</div>
+            <h3>Quality Products</h3>
+            <p>अच्छी quality के products पर focus।</p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">📍</div>
+            <h3>Local & Convenient</h3>
+            <p>Paharpur Bazar में आपके पास।</p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">🚚</div>
+            <h3>Home Delivery</h3>
+            <p>₹5,000+ orders पर delivery available।</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section>
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Popular Products</h2>
+          <p>कुछ जरूरी products — बाकी जानकारी WhatsApp पर पूछें।</p>
+        </div>
+
+        <div class="products">
+
+          <div class="product-card">
+            <div class="product-image"></div>
+            <div class="product-info">
+              <h3>Rice & Dal</h3>
+              <p>Quality staples for everyday cooking.</p>
+              <a class="outline-btn"
+                 href="https://wa.me/919771059673?text=Rice%20और%20Dal%20के%20products%20के%20बारे%20में%20जानकारी%20चाहिए।"
+                 target="_blank">
+                WhatsApp पर पूछें
+              </a>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image"></div>
+            <div class="product-info">
+              <h3>Atta & Flour</h3>
+              <p>Everyday flour and kitchen essentials.</p>
+              <a class="outline-btn"
+                 href="https://wa.me/919771059673?text=Atta%20और%20Flour%20के%20बारे%20में%20जानकारी%20चाहिए।"
+                 target="_blank">
+                WhatsApp पर पूछें
+              </a>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image"></div>
+            <div class="product-info">
+              <h3>Oil & Spices</h3>
+              <p>Cooking oil, masala and daily essentials.</p>
+              <a class="outline-btn"
+                 href="https://wa.me/919771059673?text=Oil%20और%20Masala%20के%20बारे%20में%20जानकारी%20चाहिए।"
+                 target="_blank">
+                WhatsApp पर पूछें
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- DELIVERY -->
+    <section class="delivery-section">
+      <div class="container">
+
+        <h2>🚚 घर बैठे Grocery मंगवाएँ</h2>
+
+        <p>
+          बड़ी grocery shopping के लिए अपना order
+          WhatsApp पर भेजें।
+          <strong>₹5,000+ के orders पर Home Delivery available है।</strong>
+        </p>
+
+        <a class="whatsapp-btn"
+           href="https://wa.me/919771059673?text=Hello%20RK%20Store%2C%20मुझे%20Home%20Delivery%20के%20लिए%20order%20करना%20है।"
+           target="_blank">
+          📲 WhatsApp पर Order करें
+        </a>
+
+      </div>
+    </section>
+
+    <!-- LOCATION -->
+    <section id="contact">
+      <div class="container location">
+
+        <div>
+          <h2>📍 Visit RK Store</h2>
+
+          <div class="info">
+            <strong>Address</strong><br>
+            RK Store, Paharpur Bazar,<br>
+            Near New Horizon Public School,<br>
+            Simri Bakhtiyarpur
+          </div>
+
+          <div class="info">
+            <strong>Opening Hours</strong><br>
+            🕖 7:00 AM – 7:30 PM
+          </div>
+
+          <div class="info">
+            <strong>Call / WhatsApp</strong><br>
+            📞 9771059673
+          </div>
+
+          <br>
+
+          <a class="whatsapp-btn"
+             href="https://wa.me/919771059673"
+             target="_blank">
+            📲 WhatsApp Us
+          </a>
+        </div>
+
+        <div class="map-box">
+          <div>
+            <h3>RK Store Location</h3>
+            <p>
+              Paharpur Bazar, Near New Horizon Public School,
+              Simri Bakhtiyarpur
+            </p>
+            <br>
+            <a class="outline-btn"
+               href="https://www.google.com/maps/search/?api=1&query=RK%20Store%20Paharpur%20Bazar%20Simri%20Bakhtiyarpur"
+               target="_blank">
+              📍 Get Directions
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="footer-grid">
+
+      <div>
+        <h2>RK <span>STORE</span></h2>
+        <p>
+          Quality Grocery & Daily Essentials
+          for your everyday needs.
+        </p>
+      </div>
+
+      <div>
+        <h3>Quick Links</h3>
+        <a href="#home">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div>
+        <h3>Contact</h3>
+        <p>📞 9771059673</p>
+        <p>🕖 7 AM – 7:30 PM</p>
+        <p>🚚 ₹5,000+ Home Delivery</p>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 RK Store. All Rights Reserved.
+    </div>
+
+  </footer>
+
+</body>
+</html>
