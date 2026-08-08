@@ -1,0 +1,2054 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>RK Store | Grocery & Daily Essentials</title>
+
+  <meta name="description"
+        content="RK Store, Paharpur Bazar — Grocery & Daily Essentials. WhatsApp पर Order करें।">
+
+
+  <style>
+
+    /* =========================
+       RESET
+    ========================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #ffffff;
+      color: #222;
+      line-height: 1.5;
+    }
+
+
+    :root {
+      --green: #2E7D32;
+      --dark-green: #1B5E20;
+      --orange: #FF6F00;
+      --light-green: #F1F8F2;
+      --cream: #F8FBF8;
+      --white: #ffffff;
+      --gray: #666;
+      --border: #e5e5e5;
+    }
+
+
+    /* =========================
+       COMMON
+    ========================= */
+
+    .container {
+      width: min(1200px, 92%);
+      margin: auto;
+    }
+
+    section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .section-title h2 {
+      color: var(--green);
+      font-size: 38px;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: var(--gray);
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: rgba(255,255,255,.97);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .logo {
+      text-decoration: none;
+      color: var(--green);
+      font-size: 26px;
+      font-weight: 900;
+    }
+
+    .logo span {
+      color: var(--orange);
+    }
+
+    nav {
+      display: flex;
+      gap: 22px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #222;
+      font-weight: 700;
+    }
+
+    nav a:hover {
+      color: var(--green);
+    }
+
+    .header-cart {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--orange);
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    #cartCount {
+      background: white;
+      color: var(--orange);
+      min-width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      background:
+        radial-gradient(
+          circle at 90% 10%,
+          #dff3e1,
+          transparent 35%
+        ),
+        var(--cream);
+    }
+
+    .hero-grid {
+      min-height: 540px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #fff0e5;
+      color: var(--orange);
+      padding: 8px 14px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      color: var(--green);
+      font-size: clamp(40px, 5vw, 65px);
+      line-height: 1.08;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      color: #555;
+      font-size: 18px;
+      max-width: 570px;
+      margin-bottom: 25px;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      text-decoration: none;
+      background: var(--green);
+      color: white;
+      padding: 13px 20px;
+      border-radius: 9px;
+      font-weight: 800;
+    }
+
+    .hero-btn:hover {
+      background: var(--dark-green);
+    }
+
+    .delivery-note {
+      margin-top: 17px;
+      color: var(--orange);
+      font-weight: 800;
+    }
+
+    .hero-visual {
+      min-height: 390px;
+      border-radius: 28px;
+      background:
+        linear-gradient(
+          135deg,
+          #1d7d36,
+          #7fbd51
+        );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,.15);
+    }
+
+    .hero-emoji {
+      font-size: 145px;
+    }
+
+    .hero-label {
+      position: absolute;
+      background: white;
+      padding: 12px 17px;
+      border-radius: 12px;
+      font-weight: 800;
+      box-shadow: 0 10px 25px rgba(0,0,0,.15);
+    }
+
+    .hero-label.one {
+      top: 25px;
+      left: 20px;
+    }
+
+    .hero-label.two {
+      bottom: 25px;
+      right: 20px;
+    }
+
+
+    /* =========================
+       SEARCH
+    ========================= */
+
+    .shop-area {
+      background: white;
+    }
+
+    .search-box {
+      max-width: 650px;
+      margin: 0 auto 25px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 16px 20px;
+      border: 2px solid #ddd;
+      border-radius: 12px;
+      outline: none;
+      font-size: 16px;
+    }
+
+    .search-box input:focus {
+      border-color: var(--green);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 17px;
+      top: 13px;
+      font-size: 22px;
+    }
+
+
+    /* =========================
+       CATEGORY FILTER
+    ========================= */
+
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 35px;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--green);
+      color: var(--green);
+      background: white;
+      padding: 9px 15px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--green);
+      color: white;
+    }
+
+
+    /* =========================
+       PRODUCTS
+    ========================= */
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .product-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: white;
+      transition: .25s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,.09);
+    }
+
+    .product-img {
+      height: 170px;
+      background:
+        linear-gradient(
+          135deg,
+          #eff8f0,
+          #dceedd
+        );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 75px;
+    }
+
+    .product-info {
+      padding: 17px;
+    }
+
+    .product-info h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .product-category {
+      color: #777;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      color: var(--green);
+      font-size: 20px;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .add-btn {
+      width: 100%;
+      border: none;
+      background: var(--orange);
+      color: white;
+      padding: 11px;
+      border-radius: 8px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .add-btn:hover {
+      background: #e45f00;
+    }
+
+
+    /* =========================
+       CART
+    ========================= */
+
+    .cart-section {
+      background: var(--cream);
+    }
+
+    .cart-box {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      padding: 25px;
+    }
+
+    .cart-empty {
+      text-align: center;
+      color: #777;
+      padding: 25px;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 1fr auto auto auto;
+      align-items: center;
+      gap: 15px;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .cart-item-name {
+      font-weight: 800;
+    }
+
+    .cart-item-price {
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qty-btn {
+      width: 30px;
+      height: 30px;
+      border: none;
+      background: var(--green);
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .remove-btn {
+      border: none;
+      background: #ffe5e5;
+      color: #c62828;
+      padding: 7px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 22px;
+      font-size: 23px;
+      font-weight: 900;
+    }
+
+    .cart-total span {
+      color: var(--green);
+    }
+
+    .checkout-btn {
+      width: 100%;
+      border: none;
+      margin-top: 20px;
+      background: #25D366;
+      color: white;
+      padding: 15px;
+      border-radius: 9px;
+      font-size: 17px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .checkout-btn:hover {
+      background: #1ebe5b;
+    }
+
+
+    /* =========================
+       DELIVERY
+    ========================= */
+
+    .delivery {
+      background: var(--green);
+      color: white;
+      text-align: center;
+    }
+
+    .delivery h2 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .delivery p {
+      max-width: 700px;
+      margin: 0 auto 22px;
+    }
+
+    .delivery a {
+      display: inline-block;
+      text-decoration: none;
+      background: var(--orange);
+      color: white;
+      padding: 13px 20px;
+      border-radius: 9px;
+      font-weight: 900;
+    }
+
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact {
+      background: #fafafa;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .contact-card,
+    .map-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 30px;
+    }
+
+    .contact-card h2 {
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+
+    .contact-info {
+      margin: 15px 0;
+      color: #555;
+    }
+
+    .map-box {
+      min-height: 300px;
+      background: var(--light-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .map-box h3 {
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .map-btn {
+      display: inline-block;
+      margin-top: 15px;
+      text-decoration: none;
+      background: var(--green);
+      color: white;
+      padding: 11px 16px;
+      border-radius: 8px;
+      font-weight: 800;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #143c18;
+      color: white;
+      padding: 50px 0 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    footer h2 span {
+      color: var(--orange);
+    }
+
+    footer h3 {
+      margin-bottom: 12px;
+    }
+
+    footer p,
+    footer a {
+      color: #ddd;
+    }
+
+    footer a {
+      display: block;
+      text-decoration: none;
+      margin: 7px 0;
+    }
+
+    .copyright {
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,.2);
+      margin-top: 35px;
+      padding-top: 20px;
+      color: #ccc;
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       FLOATING WHATSAPP
+    ========================= */
+
+    .floating-whatsapp {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25D366;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 27px;
+      z-index: 9999;
+      box-shadow: 0 8px 25px rgba(0,0,0,.25);
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media(max-width: 950px) {
+
+      nav {
+        display: none;
+      }
+
+      .hero-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+
+    @media(max-width: 600px) {
+
+      section {
+        padding: 55px 0;
+      }
+
+      .logo {
+        font-size: 22px;
+      }
+
+      .header-cart {
+        padding: 8px 10px;
+        font-size: 13px;
+      }
+
+      .hero-grid {
+        min-height: auto;
+      }
+
+      .hero-visual {
+        min-height: 280px;
+      }
+
+      .hero-emoji {
+        font-size: 95px;
+      }
+
+      .hero h1 {
+        font-size: 39px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .cart-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .cart-total {
+        font-size: 19px;
+      }
+
+      .delivery h2 {
+        font-size: 30px;
+      }
+
+      .section-title h2 {
+        font-size: 30px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header>
+
+    <div class="container nav">
+
+      <a href="#home" class="logo">
+        RK <span>STORE</span>
+      </a>
+
+
+      <nav>
+
+        <a href="#home">Home</a>
+
+        <a href="#products">Products</a>
+
+        <a href="#cart">Cart</a>
+
+        <a href="#contact">Contact</a>
+
+      </nav>
+
+
+      <button
+        class="header-cart"
+        onclick="goToCart()">
+
+        🛒 Cart
+
+        <span id="cartCount">
+          0
+        </span>
+
+      </button>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <main id="home">
+
+    <section class="hero">
+
+      <div class="container hero-grid">
+
+
+        <div>
+
+          <span class="badge">
+            🛒 आपका अपना Local Grocery Store
+          </span>
+
+
+          <h1>
+            हर घर की ज़रूरत,
+            अब एक ही जगह!
+          </h1>
+
+
+          <p>
+
+            Quality Grocery & Daily Essentials —
+            आपके अपने <strong>RK Store</strong> में।
+
+            Product चुनें, Cart में डालें और
+            WhatsApp पर order भेजें।
+
+          </p>
+
+
+          <a
+            class="hero-btn"
+            href="#products">
+
+            🛍️ Products देखें
+
+          </a>
+
+
+          <div class="delivery-note">
+
+            🚚 ₹5,000+ Orders पर Home Delivery Available
+
+          </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+          <div class="hero-label one">
+            🌾 Quality Grocery
+          </div>
+
+
+          <div class="hero-emoji">
+            🛒
+          </div>
+
+
+          <div class="hero-label two">
+            🚚 Home Delivery
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         PRODUCTS
+    ========================= -->
+
+    <section
+      class="shop-area"
+      id="products">
+
+      <div class="container">
+
+
+        <div class="section-title">
+
+          <h2>
+            🛍️ Our Products
+          </h2>
+
+          <p>
+            Product खोजें और Cart में Add करें
+          </p>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="🔍 Product search करें..."
+            onkeyup="searchProducts()">
+
+          <span class="search-icon">
+            🔍
+          </span>
+
+        </div>
+
+
+        <!-- FILTER -->
+
+        <div class="filter-buttons">
+
+          <button
+            class="filter-btn active"
+            onclick="filterProducts('all', this)">
+
+            All
+
+          </button>
+
+
+          <button
+            class="filter-btn"
+            onclick="filterProducts('rice', this)">
+
+            🌾 Rice & Dal
+
+          </button>
+
+
+          <button
+            class="filter-btn"
+            onclick="filterProducts('atta', this)">
+
+            🥣 Atta
+
+          </button>
+
+
+          <button
+            class="filter-btn"
+            onclick="filterProducts('oil', this)">
+
+            🛢️ Oil
+
+          </button>
+
+
+          <button
+            class="filter-btn"
+            onclick="filterProducts('masala', this)">
+
+            🧂 Masala
+
+          </button>
+
+
+          <button
+            class="filter-btn"
+            onclick="filterProducts('snacks', this)">
+
+            🍪 Snacks
+
+          </button>
+
+
+        </div>
+
+
+        <!-- PRODUCTS GRID -->
+
+        <div
+          class="products"
+          id="productGrid">
+
+
+          <!-- PRODUCT 1 -->
+
+          <div
+            class="product-card"
+            data-category="rice"
+            data-name="basmati rice">
+
+            <div class="product-img">
+              🌾
+            </div>
+
+            <div class="product-info">
+
+              <h3>
+                Basmati Rice
+              </h3>
+
+              <div class="product-category">
+                Rice & Dal
+              </div>
+
+              <div class="price">
+                ₹80 / kg
+              </div>
+
+              <button
+                class="add-btn"
+                onclick="addToCart('Basmati Rice',80)">
+
+                🛒 Add to Cart
+
+              </button>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- PRODUCT 2 -->
+
+          <div
+            class="product-card"
+            data-category="rice"
+            data-name="toor dal">
+
+            <div class="product-img">
+              🫘
+            </div>
+
+            <div class="product-info">
+
+              <h3>
+                Toor Dal
+              </h3>
+
+              <div class="product-category">
+                Rice & Dal
+              </div>
+
+              <div class="price">
+                ₹140 / kg
+              </div>
+
+              <button
+                class="add-btn"
+                onclick="addToCart('Toor Dal',140)">
+
+                🛒 Add to Cart
+
+              </button>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- PRODUCT 3 -->
+
+          <div
+            class="product-card"
+            data-category="atta"
+            data-name="wheat atta">
+
+            <div class="product-img">
+              🥣
+            </div>
+
+            <div class="product-info">
+
+              <h3>
+                Wheat Atta
+              </h3>
+
+              <div class="product-category">
+                Atta & Flour
+              </div>
+
+              <div class="price">
+                ₹45 / kg
+              </div>
+
+              <button
+                class="add-btn"
+                onclick="addToCart('Wheat Atta',45)">
+
+                🛒 Add to Cart
+
+              </button>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- PRODUCT 4 -->
+
+          <div
+            class="product-card"
+            data-category="oil"
+            data-name="mustard oil">
+
+            <div class="product-img">
+              🛢️
+            </div>
+
+            <div class="product-info">
+
+              <h3>
+                Mustard Oil
+              </h3>
+
+              <div class="product-category">
+                Oil & Ghee
+              </div>
+
+              <div class="price">
+                ₹150 / L
+              </div>
+
+              <button
+                class="add-btn"
+                onclick="addToCart('Mustard Oil',150)">
+
+                🛒 Add to Cart
+
+              </button>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- PRODUCT 5 -->
+
+          <div
+            class="product-card"
+            data-category="masala"
+            data-name="turmeric powder">
+
+            <div class="product-img">
+              🧂
+            </div>
+
+            <div class="product-info">
+
+              <h3>
+                Turmeric Powder
+              </h3>
+
+              <div class="product-category">
+                Masala & Spices
+              </div>
+
+              <div class="price">
+                ₹35 / Pack
+              </div>
+
+              <button
+                class="add-btn"
+                onclick="addToCart('Turmeric Powder',35)">
+
+                🛒 Add to Cart
+
+              </button>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- PRODUCT 6 -->
+
+          <div
+            class="product-card"
+            data-category="masala"
+            data-name="red chilli powder">
+
+            <div class="product-img">
+              🌶️
+            </div>
+
+            <div class="product-info">
+
+              <h3>
+                Red Chilli Powder
+              </h3>
+
+              <div class="product-category">
+                Masala & Spices
+              </div>
+
+              <div class="price">
+                ₹40 / Pack
+              </div>
+
+              <button
+                class="add-btn"
+                onclick="addToCart('Red Chilli Powder',40)">
+
+                🛒 Add to Cart
+
+              </button>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- PRODUCT 7 -->
+
+          <div
+            class="product-card"
+            data-category="snacks"
+            data-name="biscuits">
+
+            <div class="product-img">
+              🍪
+            </div>
+
+            <div class="product-info">
+
+              <h3>
+                Biscuits
+              </h3>
+
+              <div class="product-category">
+                Snacks
+              </div>
+
+              <div class="price">
+                ₹30 / Pack
+              </div>
+
+              <button
+                class="add-btn"
+                onclick="addToCart('Biscuits',30)">
+
+                🛒 Add to Cart
+
+              </button>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- PRODUCT 8 -->
+
+          <div
+            class="product-card"
+            data-category="snacks"
+            data-name="namkeen">
+
+            <div class="product-img">
+              🥨
+            </div>
+
+            <div class="product-info">
+
+              <h3>
+                Namkeen
+              </h3>
+
+              <div class="product-category">
+                Snacks
+              </div>
+
+              <div class="price">
+                ₹50 / Pack
+              </div>
+
+              <button
+                class="add-btn"
+                onclick="addToCart('Namkeen',50)">
+
+                🛒 Add to Cart
+
+              </button>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CART
+    ========================= -->
+
+    <section
+      class="cart-section"
+      id="cart">
+
+      <div class="container">
+
+
+        <div class="section-title">
+
+          <h2>
+            🛒 Your Cart
+          </h2>
+
+          <p>
+            Order भेजने से पहले Cart check करें।
+          </p>
+
+        </div>
+
+
+        <div class="cart-box">
+
+          <div id="cartItems">
+
+            <div class="cart-empty">
+              🛒 आपका Cart अभी खाली है।
+            </div>
+
+          </div>
+
+
+          <div class="cart-total">
+
+            <div>
+              Total
+            </div>
+
+            <span id="cartTotal">
+              ₹0
+            </span>
+
+          </div>
+
+
+          <button
+            class="checkout-btn"
+            onclick="sendWhatsAppOrder()">
+
+            💬 WhatsApp पर Order भेजें
+
+          </button>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         DELIVERY
+    ========================= -->
+
+    <section class="delivery">
+
+      <div class="container">
+
+
+        <h2>
+          🚚 Home Delivery
+        </h2>
+
+
+        <p>
+
+          ₹5,000+ grocery orders पर
+          Home Delivery Available है।
+
+          अपना order Cart में add करें
+          और WhatsApp पर भेज दें।
+
+        </p>
+
+
+        <a
+          href="https://wa.me/919771059673"
+          target="_blank">
+
+          📲 WhatsApp पर बात करें
+
+        </a>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CONTACT
+    ========================= -->
+
+    <section
+      class="contact"
+      id="contact">
+
+      <div class="container">
+
+
+        <div class="section-title">
+
+          <h2>
+            📍 RK Store
+          </h2>
+
+          <p>
+            Visit our store or order on WhatsApp.
+          </p>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+
+          <div class="contact-card">
+
+            <h2>
+              Contact Details
+            </h2>
+
+
+            <div class="contact-info">
+
+              <strong>
+                Address
+              </strong>
+
+              <br>
+
+              RK Store, Paharpur Bazar,
+
+              <br>
+
+              Near New Horizon Public School,
+
+              <br>
+
+              Simri Bakhtiyarpur
+
+            </div>
+
+
+            <div class="contact-info">
+
+              <strong>
+                Opening Hours
+              </strong>
+
+              <br>
+
+              🕖 7:00 AM – 7:30 PM
+
+            </div>
+
+
+            <div class="contact-info">
+
+              <strong>
+                Phone
+              </strong>
+
+              <br>
+
+              📞 9771059673
+
+            </div>
+
+
+            <a
+              class="hero-btn"
+              href="tel:+919771059673">
+
+              📞 Call Now
+
+            </a>
+
+          </div>
+
+
+
+          <div class="map-box">
+
+            <div>
+
+              <h3>
+                📍 Store Location
+              </h3>
+
+
+              <p>
+
+                Paharpur Bazar,
+                Near New Horizon Public School,
+                Simri Bakhtiyarpur
+
+              </p>
+
+
+              <a
+                class="map-btn"
+                href="https://www.google.com/maps/search/?api=1&query=RK%20Store%20Paharpur%20Bazar%20Simri%20Bakhtiyarpur"
+                target="_blank">
+
+                📍 Get Directions
+
+              </a>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="container">
+
+
+      <div class="footer-grid">
+
+
+        <div>
+
+          <h2>
+            RK <span>STORE</span>
+          </h2>
+
+          <p>
+            Quality Grocery & Daily Essentials
+            for your everyday needs.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Quick Links
+          </h3>
+
+          <a href="#home">
+            Home
+          </a>
+
+          <a href="#products">
+            Products
+          </a>
+
+          <a href="#cart">
+            Cart
+          </a>
+
+          <a href="#contact">
+            Contact
+          </a>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Contact
+          </h3>
+
+          <p>
+            📞 9771059673
+          </p>
+
+          <p>
+            🕖 7 AM – 7:30 PM
+          </p>
+
+          <p>
+            🚚 ₹5,000+ Home Delivery
+          </p>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="copyright">
+
+        © 2026 RK Store.
+        All Rights Reserved.
+
+      </div>
+
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- =========================
+       FLOATING WHATSAPP
+  ========================= -->
+
+  <a
+    class="floating-whatsapp"
+    href="https://wa.me/919771059673"
+    target="_blank"
+    aria-label="WhatsApp">
+
+    💬
+
+  </a>
+
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+
+    /* =========================
+       CART DATA
+    ========================= */
+
+    let cart = [];
+
+
+
+    /* =========================
+       ADD TO CART
+    ========================= */
+
+    function addToCart(name, price) {
+
+      const existingProduct =
+        cart.find(item => item.name === name);
+
+
+      if (existingProduct) {
+
+        existingProduct.quantity++;
+
+      } else {
+
+        cart.push({
+
+          name: name,
+          price: price,
+          quantity: 1
+
+        });
+
+      }
+
+
+      updateCart();
+
+      goToCart();
+
+    }
+
+
+
+    /* =========================
+       UPDATE CART
+    ========================= */
+
+    function updateCart() {
+
+      const cartItems =
+        document.getElementById("cartItems");
+
+      const cartCount =
+        document.getElementById("cartCount");
+
+      const cartTotal =
+        document.getElementById("cartTotal");
+
+
+      if (cart.length === 0) {
+
+        cartItems.innerHTML = `
+          <div class="cart-empty">
+            🛒 आपका Cart अभी खाली है।
+          </div>
+        `;
+
+        cartCount.textContent = "0";
+
+        cartTotal.textContent = "₹0";
+
+        return;
+
+      }
+
+
+      let total = 0;
+
+      let totalQuantity = 0;
+
+
+      cartItems.innerHTML = "";
+
+
+      cart.forEach((item, index) => {
+
+        const itemTotal =
+          item.price * item.quantity;
+
+
+        total += itemTotal;
+
+        totalQuantity += item.quantity;
+
+
+        cartItems.innerHTML += `
+
+          <div class="cart-item">
+
+            <div>
+
+              <div class="cart-item-name">
+                ${item.name}
+              </div>
+
+              <small>
+                ₹${item.price} each
+              </small>
+
+            </div>
+
+
+            <div class="qty-controls">
+
+              <button
+                class="qty-btn"
+                onclick="changeQuantity(${index}, -1)">
+
+                −
+
+              </button>
+
+
+              <strong>
+                ${item.quantity}
+              </strong>
+
+
+              <button
+                class="qty-btn"
+                onclick="changeQuantity(${index}, 1)">
+
+                +
+
+              </button>
+
+            </div>
+
+
+            <div class="cart-item-price">
+
+              ₹${itemTotal}
+
+            </div>
+
+
+            <button
+              class="remove-btn"
+              onclick="removeFromCart(${index})">
+
+              🗑️ Remove
+
+            </button>
+
+          </div>
+
+        `;
+
+      });
+
+
+      cartCount.textContent =
+        totalQuantity;
+
+
+      cartTotal.textContent =
+        "₹" + total;
+
+    }
+
+
+
+    /* =========================
+       CHANGE QUANTITY
+    ========================= */
+
+    function changeQuantity(index, change) {
+
+      cart[index].quantity += change;
+
+
+      if (cart[index].quantity <= 0) {
+
+        cart.splice(index, 1);
+
+      }
+
+
+      updateCart();
+
+    }
+
+
+
+    /* =========================
+       REMOVE PRODUCT
+    ========================= */
+
+    function removeFromCart(index) {
+
+      cart.splice(index, 1);
+
+      updateCart();
+
+    }
+
+
+
+    /* =========================
+       GO TO CART
+    ========================= */
+
+    function goToCart() {
+
+      document
+        .getElementById("cart")
+        .scrollIntoView({
+          behavior: "smooth"
+        });
+
+    }
+
+
+
+    /* =========================
+       SEARCH PRODUCTS
+    ========================= */
+
+    function searchProducts() {
+
+      const search =
+        document
+          .getElementById("searchInput")
+          .value
+          .toLowerCase()
+          .trim();
+
+
+      const products =
+        document.querySelectorAll(".product-card");
+
+
+      products.forEach(product => {
+
+        const name =
+          product
+            .getAttribute("data-name")
+            .toLowerCase();
+
+
+        if (name.includes(search)) {
+
+          product.style.display = "";
+
+        } else {
+
+          product.style.display = "none";
+
+        }
+
+      });
+
+    }
+
+
+
+    /* =========================
+       FILTER PRODUCTS
+    ========================= */
+
+    function filterProducts(category, button) {
+
+
+      document
+        .querySelectorAll(".filter-btn")
+        .forEach(btn => {
+
+          btn.classList.remove("active");
+
+        });
+
+
+      button.classList.add("active");
+
+
+      const products =
+        document.querySelectorAll(".product-card");
+
+
+      products.forEach(product => {
+
+        const productCategory =
+          product.getAttribute("data-category");
+
+
+        if (
+          category === "all" ||
+          productCategory === category
+        ) {
+
+          product.style.display = "";
+
+        } else {
+
+          product.style.display = "none";
+
+        }
+
+      });
+
+
+      document
+        .getElementById("searchInput")
+        .value = "";
+
+    }
+
+
+
+    /* =========================
+       WHATSAPP ORDER
+    ========================= */
+
+    function sendWhatsAppOrder() {
+
+
+      if (cart.length === 0) {
+
+        alert(
+          "पहले Cart में कोई product add करें।"
+        );
+
+        return;
+
+      }
+
+
+      let message =
+        "Hello RK Store,%0A%0A" +
+        "मुझे यह सामान order करना है:%0A%0A";
+
+
+      let total = 0;
+
+
+      cart.forEach(item => {
+
+        const itemTotal =
+          item.price * item.quantity;
+
+
+        total += itemTotal;
+
+
+        message +=
+          "• " +
+          item.name +
+          " × " +
+          item.quantity +
+          " = ₹" +
+          itemTotal +
+          "%0A";
+
+      });
+
+
+      message +=
+        "%0A*Total: ₹" +
+        total +
+        "*";
+
+
+      message +=
+        "%0A%0Aकृपया order confirm करें।";
+
+
+      const whatsappURL =
+        "https://wa.me/919771059673?text=" +
+        message;
+
+
+      window.open(
+        whatsappURL,
+        "_blank"
+      );
+
+    }
+
+
+    /* =========================
+       INITIAL CART
+    ========================= */
+
+    updateCart();
+
+
+  </script>
+
+
+</body>
+
+</html>
