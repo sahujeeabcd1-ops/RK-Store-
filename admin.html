@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RK Store | Owner Admin</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f8f4;color:#222}
+.hidden{display:none!important}
+:root{--green:#176b24;--orange:#ff6f00;--red:#d32f2f}
+.login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#eef8ee,#fff7ed)}
+.box,.panel{background:#fff;border-radius:18px;box-shadow:0 6px 24px #0001}
+.box{width:100%;max-width:440px;padding:32px}
+.logo{text-align:center;font-size:38px;font-weight:900;margin-bottom:8px}
+.rk{color:var(--green)}.store{color:var(--orange)}
+.box h2{text-align:center;margin:8px 0}.sub{text-align:center;color:#777;margin-bottom:24px}
+label{font-weight:bold;font-size:14px}
+input,select{width:100%;padding:12px;margin:7px 0 14px;border:1px solid #ddd;border-radius:9px;font-size:15px}
+.btn{border:0;border-radius:9px;padding:12px 16px;font-weight:bold;cursor:pointer}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.green{background:var(--green);color:#fff}.orange{background:var(--orange);color:#fff}.red{background:var(--red);color:#fff}
+.full{width:100%}.error{color:var(--red);font-size:14px;margin-top:12px;text-align:center}
+.wrap{max-width:1150px;margin:auto;padding:20px 16px}
+.top{background:#fff;border-bottom:1px solid #ddd}.topin{display:flex;justify-content:space-between;align-items:center}
+.panel{padding:22px;margin-bottom:20px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px}.fullcol{grid-column:1/-1}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.weights{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 15px}.weights label{border:1px solid #ddd;padding:9px;border-radius:8px;background:#fafafa}.weights input{width:auto;margin:0 5px 0 0}
+.products{display:grid;gap:12px}.prod{background:#fff;border:1px solid #eee;border-radius:12px;padding:13px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.thumb{width:55px;height:55px;object-fit:cover;border-radius:8px;margin:7px 4px 0 0}.actions{display:flex;gap:7px}
+.note{font-size:13px;color:#666;background:#f5f8ff;padding:10px;border-radius:8px;margin-bottom:15px}
+@media(max-width:700px){.grid,.photos{grid-template-columns:1fr}.fullcol{grid-column:auto}.prod{flex-direction:column;align-items:flex-start}.topin{gap:10px}}
+</style>
+</head>
+<body>
+
+<section id="loginPage" class="login">
+  <div class="box">
+    <div class="logo"><span class="rk">RK</span><span class="store"> STORE</span></div>
+    <h2>Owner Admin</h2>
+    <div class="sub">सिर्फ Shop Owner के लिए</div>
+
+    <label>Email</label>
+    <input id="email" type="email" autocomplete="username" placeholder="owner@example.com">
+
+    <label>Password</label>
+    <input id="password" type="password" autocomplete="current-password" placeholder="अपना Firebase password">
+
+    <button id="loginBtn" class="btn green full">🔐 Login</button>
+    <div id="loginError" class="error"></div>
+  </div>
+</section>
+
+<div id="dashboard" class="hidden">
+  <header class="top">
+    <div class="wrap topin">
+      <b style="font-size:24px"><span class="rk">RK</span><span class="store"> STORE</span></b>
+      <button id="logoutBtn" class="btn red">Logout</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="panel">
+      <h1 style="color:var(--green)">➕ Add Product</h1>
+      <div class="note">दाल/चावल जैसे सामान KG में और साबुन/shampoo जैसे सामान Piece में जोड़ें। Product में 1–4 photos भी लगा सकते हैं।</div>
+
+      <div class="grid">
+        <div>
+          <label>Product Name</label>
+          <input id="name" placeholder="Arhar Dal / Lux Soap">
+        </div>
+
+        <div>
+          <label>Category</label>
+          <select id="category">
+            <option>Rice & Dal</option>
+            <option>Atta & Flour</option>
+            <option>Oil & Spices</option>
+            <option>Snacks</option>
+            <option>Beverages</option>
+            <option>Home & Personal Care</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Unit</label>
+          <select id="unit">
+            <option value="kg">KG</option>
+            <option value="piece">Piece</option>
+          </select>
+        </div>
+
+        <div>
+          <label id="priceLabel">Price per KG</label>
+          <input id="price" type="number" min="0" step="0.01" placeholder="120">
+        </div>
+
+        <div class="fullcol">
+          <label>Product Photos (1–4 image URLs)</label>
+          <div class="photos">
+            <input id="im1" placeholder="Photo 1 URL">
+            <input id="im2" placeholder="Photo 2 URL">
+            <input id="im3" placeholder="Photo 3 URL">
+            <input id="im4" placeholder="Photo 4 URL">
+          </div>
+        </div>
+
+        <div id="kgBox" class="fullcol">
+          <label>Available Weights</label>
+          <div class="weights">
+            <label><input type="checkbox" value="200" checked>200g</label>
+            <label><input type="checkbox" value="400" checked>400g</label>
+            <label><input type="checkbox" value="500" checked>500g</label>
+            <label><input type="checkbox" value="1000" checked>1kg</label>
+            <label><input type="checkbox" value="2000">2kg</label>
+            <label><input type="checkbox" value="5000">5kg</label>
+          </div>
+        </div>
+
+        <div class="fullcol">
+          <button id="saveBtn" class="btn green">➕ Add Product</button>
+          <button id="cancelBtn" class="btn" style="display:none">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 style="color:var(--green)">🛒 Products <span id="total">0</span></h2>
+      <div id="list" class="products">Loading...</div>
+    </div>
+  </main>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+import {
+  getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+import {
+  getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc,
+  doc, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBHYFfuoS3YYZBCzOb3QZFeJnZRhqLLhM8",
+  authDomain: "rk-store-29fe3.firebaseapp.com",
+  projectId: "rk-store-29fe3",
+  storageBucket: "rk-store-29fe3.firebasestorage.app",
+  messagingSenderId: "917562412698",
+  appId: "1:917562412698:web:5aa5b4eaf2a5bdcb431923",
+  measurementId: "G-G9BJX0CVWG"
+};
+
+const OWNER_EMAIL = "rinakumari1210121@gmail.com";
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const $ = id => document.getElementById(id);
+const esc = x => String(x ?? "")
+  .replaceAll("&","&amp;").replaceAll("<","&lt;")
+  .replaceAll(">","&gt;").replaceAll('"',"&quot;")
+  .replaceAll("'","&#039;");
+
+let editId = null;
+let products = [];
+
+$("unit").onchange = () => {
+  const isKg = $("unit").value === "kg";
+  $("priceLabel").textContent = isKg ? "Price per KG" : "Price per Piece";
+  $("kgBox").style.display = isKg ? "block" : "none";
+};
+
+function weights(){
+  return [...document.querySelectorAll(".weights input:checked")].map(x => ({
+    grams: Number(x.value),
+    label: Number(x.value) >= 1000
+      ? (Number(x.value)/1000)+"kg"
+      : x.value+"g"
+  }));
+}
+
+function clearForm(){
+  ["name","price","im1","im2","im3","im4"].forEach(id => $(id).value = "");
+  $("unit").value = "kg";
+  $("unit").onchange();
+  document.querySelectorAll(".weights input").forEach(x =>
+    x.checked = [200,400,500,1000].includes(Number(x.value))
+  );
+  editId = null;
+  $("saveBtn").textContent = "➕ Add Product";
+  $("cancelBtn").style.display = "none";
+}
+
+$("cancelBtn").onclick = clearForm;
+
+async function loadProducts(){
+  $("list").textContent = "Loading...";
+  try {
+    const snap = await getDocs(collection(db,"products"));
+    products = snap.docs.map(d => ({id:d.id, ...d.data()}));
+    $("total").textContent = products.length;
+
+    if(!products.length){
+      $("list").innerHTML = '<p style="text-align:center;color:#777">कोई product नहीं है।</p>';
+      return;
+    }
+
+    $("list").innerHTML = "";
+
+    products.forEach(p => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "prod";
+
+      const info = document.createElement("div");
+      const title = document.createElement("b");
+      title.textContent = p.name || "";
+      info.appendChild(title);
+      info.appendChild(document.createElement("br"));
+
+      const small = document.createElement("small");
+      small.textContent = p.unit === "piece"
+        ? `${p.category || ""} · Piece · ₹${p.pricePerPiece ?? 0}`
+        : `${p.category || ""} · KG · ₹${p.pricePerKg ?? 0}/kg`;
+      info.appendChild(small);
+      info.appendChild(document.createElement("br"));
+
+      (p.images || []).slice(0,4).forEach(u => {
+        const img = document.createElement("img");
+        img.className = "thumb";
+        img.src = u;
+        img.alt = "";
+        img.loading = "lazy";
+        img.onerror = () => img.style.display = "none";
+        info.appendChild(img);
+      });
+
+      const actions = document.createElement("div");
+      actions.className = "actions";
+
+      const editBtn = document.createElement("button");
+      editBtn.className = "btn orange";
+      editBtn.textContent = "✏️ Edit";
+      editBtn.onclick = () => editProduct(p.id);
+
+      const deleteBtn = document.createElement("button");
+      deleteBtn.className = "btn red";
+      deleteBtn.textContent = "🗑️ Delete";
+      deleteBtn.onclick = () => deleteProduct(p.id);
+
+      actions.append(editBtn, deleteBtn);
+      wrapper.append(info, actions);
+      $("list").appendChild(wrapper);
+    });
+  } catch(e) {
+    console.error(e);
+    $("list").innerHTML =
+      '<p style="color:#d32f2f">❌ Products load नहीं हुए। Firestore rules check करें।</p>';
+  }
+}
+
+$("saveBtn").onclick = async () => {
+  if(!auth.currentUser || auth.currentUser.email?.toLowerCase() !== OWNER_EMAIL.toLowerCase()){
+    $("loginError").textContent = "पहले Owner Admin login करें।";
+    return;
+  }
+
+  const name = $("name").value.trim();
+  const price = Number($("price").value);
+  const unit = $("unit").value;
+
+  if(!name || !Number.isFinite(price) || price <= 0){
+    alert("Product name और सही price डालें।");
+    return;
+  }
+
+  const images = ["im1","im2","im3","im4"]
+    .map(id => $(id).value.trim())
+    .filter(Boolean);
+
+  const data = {
+    name,
+    category: $("category").value,
+    unit,
+    images,
+    updatedAt: serverTimestamp()
+  };
+
+  if(unit === "kg"){
+    data.pricePerKg = price;
+    data.weights = weights();
+    if(!data.weights.length){
+      alert("कम से कम एक weight चुनें।");
+      return;
+    }
+  }else{
+    data.pricePerPiece = price;
+    data.weights = [];
+  }
+
+  $("saveBtn").disabled = true;
+  try{
+    if(editId){
+      await updateDoc(doc(db,"products",editId), data);
+      alert("✅ Product updated");
+    }else{
+      data.createdAt = serverTimestamp();
+      await addDoc(collection(db,"products"), data);
+      alert("✅ Product added");
+    }
+    clearForm();
+    await loadProducts();
+  }catch(e){
+    console.error(e);
+    alert("❌ Save नहीं हुआ। Firestore rules में logged-in owner को write permission दें।");
+  }finally{
+    $("saveBtn").disabled = false;
+  }
+};
+
+function editProduct(id){
+  const p = products.find(x => x.id === id);
+  if(!p) return;
+
+  editId = id;
+  $("name").value = p.name || "";
+  $("category").value = p.category || "Rice & Dal";
+  $("unit").value = p.unit || "kg";
+  $("unit").onchange();
+  $("price").value = p.unit === "piece"
+    ? (p.pricePerPiece ?? "")
+    : (p.pricePerKg ?? "");
+
+  ["im1","im2","im3","im4"].forEach((id,i) => {
+    $(id).value = (p.images || [])[i] || "";
+  });
+
+  const selected = (p.weights || []).map(x => Number(x.grams));
+  document.querySelectorAll(".weights input").forEach(x => {
+    x.checked = selected.includes(Number(x.value));
+  });
+
+  $("saveBtn").textContent = "💾 Update Product";
+  $("cancelBtn").style.display = "inline-block";
+  scrollTo({top:0, behavior:"smooth"});
+}
+
+async function deleteProduct(id){
+  if(!confirm("यह product delete करना है?")) return;
+
+  try{
+    await deleteDoc(doc(db,"products",id));
+    await loadProducts();
+  }catch(e){
+    console.error(e);
+    alert("❌ Delete नहीं हुआ। Firestore rules check करें।");
+  }
+}
+
+$("loginBtn").onclick = async () => {
+  const email = $("email").value.trim();
+  const password = $("password").value;
+
+  $("loginError").textContent = "";
+
+  if(!email || !password){
+    $("loginError").textContent = "Email और password दोनों डालें।";
+    return;
+  }
+
+  if(email.toLowerCase() !== OWNER_EMAIL.toLowerCase()){
+    $("loginError").textContent = "❌ सिर्फ Owner ही Login कर सकता है।";
+    return;
+  }
+
+  $("loginBtn").disabled = true;
+  $("loginBtn").textContent = "Logging in...";
+
+  try{
+    await signInWithEmailAndPassword(auth,email,password);
+  }catch(e){
+    console.error(e);
+    const messages = {
+      "auth/invalid-credential":"❌ Email या password गलत है।",
+      "auth/invalid-email":"❌ Email सही नहीं है।",
+      "auth/user-disabled":"❌ यह user disabled है।",
+      "auth/too-many-requests":"❌ बहुत ज्यादा कोशिश हुई। थोड़ी देर बाद फिर करें।"
+    };
+    $("loginError").textContent = messages[e.code] || ("❌ Login failed: " + e.code);
+  }finally{
+    $("loginBtn").disabled = false;
+    $("loginBtn").textContent = "🔐 Login";
+  }
+};
+
+$("logoutBtn").onclick = () => signOut(auth);
+
+onAuthStateChanged(auth, async user => {
+  if(user && user.email &&
+     user.email.toLowerCase() === OWNER_EMAIL.toLowerCase()){
+    $("loginPage").classList.add("hidden");
+    $("dashboard").classList.remove("hidden");
+    await loadProducts();
+  }else{
+    if(user){
+      await signOut(auth);
+      $("loginError").textContent = "❌ सिर्फ Owner ही Login कर सकता है।";
+    }
+    $("dashboard").classList.add("hidden");
+    $("loginPage").classList.remove("hidden");
+  }
+});
+</script>
+</body>
+</html>
